@@ -3,6 +3,6 @@ node_modules
 yarn-error.log
 tmp
 
-.env
+# .env comentado para fins de entrega do teste
 .vscode
 coverage
