@@ -1,0 +1,69 @@
+{
+  "name": "api-users",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "CaioTargino <c.targino@gmail.com>",
+  "documentation": "https://documenter.getpostman.com/view/12955413/UyxjF6Hq#187d9ab7-d29e-48ff-b0c9-feb7adc9c124",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register --transpile-only src/server.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --poll --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
+    "test": "jest --runInBand --detectOpenHandles",
+    "lint": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.23",
+    "@types/node-cron": "^2.0.4",
+    "@types/nodemailer": "^6.4.4",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import-helpers": "^1.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "git-commit-msg-linter": "^3.2.6",
+    "husky": "^7.0.1",
+    "jest": "^27.0.4",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.2.1",
+    "ts-node-dev": "^1.1.6",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "celebrate": "^15.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.7.5",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-jest": "^27.0.3",
+    "tsyringe": "^4.5.0",
+    "typeorm": "^0.2.32",
+    "uuid": "^8.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run test"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint 'src/**' --fix",
+      "git add"
+    ]
+  }
+}

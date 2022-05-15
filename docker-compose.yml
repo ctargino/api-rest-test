@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres
+    container_name: database_api
+    restart: always
+    environment:
+      POSTGRES_USER: ${TYPEORM_USERNAME}
+      POSTGRES_PASSWORD: ${TYPEORM_PASSWORD}
+      POSTGRES_DB: ${TYPEORM_DATABASE}
+    ports:
+      - '${TYPEORM_PORT}:${TYPEORM_PORT}'
+    expose:
+      - ${TYPEORM_PORT}
+    volumes:
+      - pgdata:/data/postgres
+    command: -p ${TYPEORM_PORT}
+    networks:
+      - localnet
+
+  app:
+    build: .
+    container_name: api
+    command: sh -c "yarn typeorm migration:run && yarn test && yarn dev"
+    restart: always
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+    networks:
+      - localnet
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  localnet:
+    driver: bridge
