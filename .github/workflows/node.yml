@@ -34,11 +34,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install Dependencies
+        run: yarn
+
       - name: Check Lint
         run: yarn eslint
 
-      - name: Chek Tests
+      - name: Check Tests
         run: yarn test
 
-      - name: yarn
-        run: yarn
+      - name: Check Start
+        run: yarn dev
