@@ -1,6 +1,6 @@
 # Teste Back-end!
 
-> Olá! Me chamo Caio Targino e estou enviando este projeto para avaliação para vaga **Back-end Node**.
+> Olá! Me chamo Caio Targino e estou enviando este projeto **Back-end Node**.
 
 # Passos
 
@@ -44,7 +44,3 @@
 > Busca pela observação dos princípios do clean code
 > Utilização do github actions na observação de commits e push de prs
 > Template automatico na abertura de PR's
-
-## Agradecimentos
-
-> Agradeço a todos pelo tempo dispensado, qualquer dúvida ou sugestão estou à disposição.
