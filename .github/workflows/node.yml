@@ -34,11 +34,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: yarn
-        run: yarn
-
       - name: Check Lint
         run: yarn eslint
 
       - name: Chek Tests
         run: yarn test
+
+      - name: yarn
+        run: yarn
