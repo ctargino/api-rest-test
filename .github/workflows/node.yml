@@ -7,7 +7,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 env:
-  NODE_VERSION: '14.x' # set this to the node version to use
+  NODE_VERSION: "14.x" # set this to the node version to use
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
@@ -42,3 +42,9 @@ jobs:
 
       - name: Check Tests
         run: yarn test
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
