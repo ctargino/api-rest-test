@@ -19,6 +19,7 @@
 - Docker
 - Github
 - Github Actions
+- SonarCloud
 - Postman
 - Node.js
 - Typescript
