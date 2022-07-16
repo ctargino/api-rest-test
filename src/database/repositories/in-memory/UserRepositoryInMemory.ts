@@ -30,19 +30,21 @@ export default class UserRepositoryInMemory implements IUsersRepository {
 
     if (user_id) {
       user = this.users.find(
-        (user) => user.user_id === user_id && !user.deleted_at
+        (actualUser) => actualUser.user_id === user_id && !actualUser.deleted_at
       );
     }
 
     if (email) {
       user = this.users.find(
-        (user) => user.email === email && !user.deleted_at
+        (actualUser) => actualUser.email === email && !actualUser.deleted_at
       );
     }
 
     if (github_username) {
       user = this.users.find(
-        (user) => user.github_username === github_username && !user.deleted_at
+        (actualUser) =>
+          actualUser.github_username === github_username &&
+          !actualUser.deleted_at
       );
     }
 

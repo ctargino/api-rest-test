@@ -32,7 +32,7 @@ export default class UsersController {
     return response.json(users);
   }
 
-  async list(request: Request, response: Response): Promise<Response> {
+  async list(_request: Request, response: Response): Promise<Response> {
     const users = await container.resolve(ListUsersService).execute();
 
     return response.json(users);

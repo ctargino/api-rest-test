@@ -11,8 +11,6 @@ export default class ListUsersService {
   ) { }
 
   public async execute(): Promise<Users[]> {
-    const users = await this.usersRepository.list();
-
-    return users;
+    return this.usersRepository.list();
   }
 }

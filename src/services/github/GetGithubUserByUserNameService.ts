@@ -10,7 +10,7 @@ interface IGithubUser {
 }
 
 export default async (githubUserName: string): Promise<IGithubUser> => {
-  const githubUser = await axios({
+  return axios({
     method: 'GET',
     url: `https://api.github.com/users/${githubUserName}`,
     headers: {
@@ -23,6 +23,4 @@ export default async (githubUserName: string): Promise<IGithubUser> => {
     .catch((error) => {
       throw new AppError(error.response.statusText, error.response.status);
     });
-
-  return githubUser;
 };
