@@ -31,33 +31,35 @@ app.use(routes);
 app.use(errors());
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-  console.error(err);
-
-  if (err instanceof AppError) {
+app.use(
+  (err: Error, _request: Request, response: Response, _: NextFunction) => {
     console.error(err);
-    response.header('Access-Control-Allow-Origin', '*');
-    response.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    );
-    return response.status(err.statusCode).json({
-      status: 'error',
-      message: err.message,
-    });
-  }
-  if (err instanceof QueryFailedError) {
-    return response.status(500).json({
-      status: 'Query failed error',
-      message: `Unexpected error: ${err.message}`,
-    });
-  }
 
-  return response.status(500).json({
-    status: 'error',
-    message: 'Internal server error',
-  });
-});
+    if (err instanceof AppError) {
+      console.error(err);
+      response.header('Access-Control-Allow-Origin', '*');
+      response.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+      );
+      return response.status(err.statusCode).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
+    if (err instanceof QueryFailedError) {
+      return response.status(500).json({
+        status: 'Query failed error',
+        message: `Unexpected error: ${err.message}`,
+      });
+    }
+
+    return response.status(500).json({
+      status: 'error',
+      message: 'Internal server error',
+    });
+  }
+);
 
 cron.schedule(
   `${CRON_DAILY_MINUTE} ${CRON_DAILY_HOUR} * * *`,

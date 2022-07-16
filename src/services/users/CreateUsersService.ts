@@ -45,12 +45,11 @@ export default class CreateUsersService {
       );
     }
 
-    const newUser = this.usersRepository.create({
+    return this.usersRepository.create({
       github_username: githubUser.login,
       name: githubUser.name,
       email: githubUser.email || user.email,
       avatar_url: githubUser.avatar_url,
     });
-    return newUser;
   }
 }

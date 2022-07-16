@@ -13,8 +13,6 @@ export default class GetUserService {
   ) { }
 
   public async execute(data: IGetUser): Promise<Users | undefined> {
-    const user = await this.usersRepository.findOne(data);
-
-    return user;
+    return this.usersRepository.findOne(data);
   }
 }

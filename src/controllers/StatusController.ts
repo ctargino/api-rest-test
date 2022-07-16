@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getConnection } from 'typeorm';
 
 export default {
-  async ready(request: Request, response: Response): Promise<Response> {
+  async ready(_request: Request, response: Response): Promise<Response> {
     const db_name = process.env.TYPEORM_DATABASE;
 
     const connection = getConnection();
@@ -28,7 +28,7 @@ export default {
 
     return response.status(200).json(status);
   },
-  async status(request: Request, response: Response): Promise<Response> {
+  async status(_request: Request, response: Response): Promise<Response> {
     const status = {
       application: true,
     };
