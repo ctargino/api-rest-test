@@ -22,6 +22,7 @@ const { CRON_DAILY_HOUR, CRON_DAILY_MINUTE } = process.env;
 connection();
 
 const app = express();
+app.disable('x-powered-by');
 app.use(cors({ credentials: true, origin: true }));
 
 app.use(express.json());
