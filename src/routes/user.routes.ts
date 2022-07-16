@@ -3,10 +3,10 @@ import { Router } from 'express';
 
 import UsersController from '@controllers/UsersController';
 
-const userRouter = Router();
+const user = Router();
 const usersController = new UsersController();
 
-userRouter
+user
   .route('/')
   .post(
     celebrate({
@@ -19,7 +19,7 @@ userRouter
   )
   .get(usersController.list);
 
-userRouter.get(
+user.get(
   '/:email',
   celebrate({
     [Segments.PARAMS]: {
@@ -29,7 +29,7 @@ userRouter.get(
   usersController.get
 );
 
-userRouter
+user
   .route('/:user_id')
   .put(
     celebrate({
@@ -52,4 +52,4 @@ userRouter
     usersController.delete
   );
 
-export default userRouter;
+export default user;
