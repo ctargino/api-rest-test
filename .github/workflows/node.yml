@@ -1,3 +1,4 @@
+name: ci-sonarcloud
 on:
   push:
     branches:
@@ -12,37 +13,28 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Push and Pull Request action
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - name: Check commit lint
         uses: wagoid/commitlint-github-action@v2
-
       - uses: actions/cache@v2
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
-
       - name: Install Dependencies
         run: yarn
-
       - name: Check Lint
         run: yarn eslint
-
       - name: Check Tests
         run: yarn test
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
